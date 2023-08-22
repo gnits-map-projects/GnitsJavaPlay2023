@@ -1,0 +1,9 @@
+@(name: String)
+@main("welcome"){
+    <div class="container mt-3">
+        <h1>Welcome @name</h1>
+        <form action="@routes.AuthenticationController.logout(name)" method="post">
+            <input type="submit" class="btn btn-danger" VALUE="Logout">
+        </form>
+    </div>
+}

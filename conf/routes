@@ -1,0 +1,48 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+
+#Logging
+GET     /loggers                           controllers.LoggingController.executeLoggers()
+
+# Authentication
+GET     /                           controllers.AuthenticationController.index()
+POST    /login                      controllers.AuthenticationController.login(request: Request)
+POST    /logout/:username           controllers.AuthenticationController.logout(username: String)
+
+
+# Authentication through sessions
+GET     /session                            controllers.SessionController.sessionIndex(request: Request)
++nocsrf
+POST    /session/login                      controllers.SessionController.loginWithSession(request: Request)
+GET     /session/logout                     controllers.SessionController.logoutWithSession(request: Request)
+GET     /session/view                       controllers.SessionController.sessionView(request: Request)
+
+
+# Books Management through JSON
+POST        /editBook/:id               controllers.BookController.editBook(request: Request, id: Integer)
+PUT         /addBook                    controllers.BookController.addBook(request: Request)
+DELETE      /removeBook/:id             controllers.BookController.deleteBook(id: Integer)
+GET         /listBooks                  controllers.BookController.listBooks()
+
+
+# Home controller
+GET     /view/admin                 controllers.HomeController.index()
+GET     /welcome                    controllers.HomeController.welcome()
+GET     /welcome1/:name             controllers.HomeController.welcome1(name: String)
+GET     /welcome2/:name             controllers.HomeController.welcome2(request: Request, name: String)
+GET     /keys                       controllers.HomeController.getKey()
+GET     /data/asText                controllers.HomeController.asText()
+GET     /data/asJson                controllers.HomeController.asJson()
+
+
+# Responds with 404 Not Found
+GET   /notFound     controllers.Default.notFound
+
+# Responds with 500 Internal Server Error
+GET   /error    controllers.Default.error
+
+# Responds with 501 Not Implemented
+GET   /notImplemented      controllers.Default.todo
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

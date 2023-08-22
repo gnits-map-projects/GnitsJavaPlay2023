@@ -1,0 +1,19 @@
+@(name: String = "", key: String)
+@main("locations"){
+    <div class="container mt-3">
+        <h1>Welcome @name</h1>
+        <h2>List of locations</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Some Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@key</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

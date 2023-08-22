@@ -1,0 +1,28 @@
+@(name: String, books: List[Book])
+@main("Welcome to Play") {
+
+    <div class="container mt-3">
+        <h2>List of Books</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(book <- books){
+                <tr>
+                    <td>@book.title</td>
+                    <td><b>@book.author</b></td>
+                    <td><p>@book.price</p></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <form action="@routes.SessionController.logoutWithSession()" method="get">
+            <input type="submit" class="btn btn-danger" VALUE="Logout">
+        </form>
+    </div>
+}

@@ -1,0 +1,29 @@
+@(name: String, users: Set[Login])
+@main("Welcome to Play") {
+
+  <div class="container mt-3">
+    <h1>Welcome @name</h1>
+    <h2>List of users</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>College</th>
+        </tr>
+      </thead>
+      <tbody>
+      @for(user <- users){
+        <tr>
+          <td>@user.username</td>
+          <td><b>@user.college</b></td>
+          <td>
+            <form action="@routes.AuthenticationController.logout(user.username)" method="post">
+              <input type="submit" class="btn btn-danger" VALUE="Logout">
+            </form>
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+}
