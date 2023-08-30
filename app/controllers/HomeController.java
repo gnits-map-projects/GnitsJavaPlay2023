@@ -24,6 +24,7 @@ public class HomeController extends Controller {
 
     public Result index(){
         Set<Login> loggedInUsers = Login.getLoggedInUsers();
+//        return ok(views.html.address.render());
         return ok(views.html.index.render("", loggedInUsers));
     }
 

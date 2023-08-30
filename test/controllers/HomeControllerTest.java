@@ -32,11 +32,11 @@ public class HomeControllerTest extends WithApplication {
     public void testDataAsJson() {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .method(GET)
-                .uri("/data/asJson");
+                .uri("/data/asText");
 
         Result result = route(app, request);
         assertEquals(OK, result.status());
-        System.out.println(contentAsString(result));
+        assertEquals(contentAsString(result), "[Hyderabad, Mumbai]");
     }
 
 }

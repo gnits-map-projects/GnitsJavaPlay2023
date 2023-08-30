@@ -17,8 +17,12 @@ public class AuthenticationController extends Controller {
 
     @Inject FormFactory formFactory;
 
-    public Result index() {
-        return ok(views.html.Authentication.login.render());
+    public Result index(Http.Request request) {
+        return ok(views.html.Authentication.login.render(request));
+    }
+
+    public Result homeView(Http.Request request, String username) {
+        return ok(views.html.Authentication.index.render(request, username, Login.getLoggedInUsers()));
     }
 
     public Result login(Http.Request request){
@@ -28,7 +32,7 @@ public class AuthenticationController extends Controller {
         } else {
             Login login = loginForm.get();
             Login.addUser(login);
-            return ok(views.html.Authentication.index.render(login.username));
+            return redirect(routes.AuthenticationController.homeView(login.username));
         }
     }
 
@@ -37,6 +41,6 @@ public class AuthenticationController extends Controller {
         if (user.isPresent()){
             Login.removeUser(user.get());
             return redirect(routes.AuthenticationController.index());
-        } else return ok(views.html.Authentication.logout.render());
+        } else return badRequest();
     }
 }

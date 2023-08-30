@@ -24,6 +24,7 @@ public class BookController extends Controller {
     }
 
     public Result addBook(Http.Request request){
+        Book book = Json.fromJson(request.body().asJson(), Book.class);
         Optional<Book> bookOpt = request.body().parseJson(Book.class);
         if (bookOpt.isPresent() && bookOpt.get().isValid()){
             Book.add(bookOpt.get());

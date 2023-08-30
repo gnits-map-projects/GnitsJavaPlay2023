@@ -4,17 +4,25 @@
 #Logging
 GET     /loggers                           controllers.LoggingController.executeLoggers()
 
+# Threads
+GET     /thread                             controllers.ThreadController.index()
+GET     /threadF                            controllers.ThreadController.indexFuture()
+GET     /threadFS                           controllers.ThreadController.indexFutureSleep()
+GET     /user/:firstName                    controllers.ThreadController.userIndex(request: Request, firstName: String)
+
 # Authentication
-GET     /                           controllers.AuthenticationController.index()
+GET     /                           controllers.AuthenticationController.index(request: Request)
+GET     /home/:username             controllers.AuthenticationController.homeView(request: Request, username: String)
 POST    /login                      controllers.AuthenticationController.login(request: Request)
 POST    /logout/:username           controllers.AuthenticationController.logout(username: String)
 
 
 # Authentication through sessions
 GET     /session                            controllers.SessionController.sessionIndex(request: Request)
-+nocsrf
 POST    /session/login                      controllers.SessionController.loginWithSession(request: Request)
-GET     /session/logout                     controllers.SessionController.logoutWithSession(request: Request)
+POST    /session/logout                     controllers.SessionController.logoutWithSession(request: Request)
++noscrf
+POST    /session/_delete                    controllers.SessionController.deleteUserAndSession(request: Request)
 GET     /session/view                       controllers.SessionController.sessionView(request: Request)
 
 

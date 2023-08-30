@@ -1,7 +1,11 @@
-@(name: String, books: List[Book])
+@import helper._
+@import play.mvc.Http.Request
+@(implicit request: Request, name: String, books: List[Book], role: String)
+
 @main("Welcome to Play") {
 
     <div class="container mt-3">
+        <h2>[Role: @role] Welcome @name </h2>
         <h2>List of Books</h2>
         <table class="table table-striped">
             <thead>
@@ -21,8 +25,13 @@
             }
             </tbody>
         </table>
-        <form action="@routes.SessionController.logoutWithSession()" method="get">
-            <input type="submit" class="btn btn-danger" VALUE="Logout">
+        <form action="@routes.SessionController.deleteUserAndSession()" method="post">
+            @CSRF.formField
+            <input type="submit" class="btn btn-danger" VALUE="Delete">
+        </form>
+        <form action="@routes.SessionController.logoutWithSession()" method="post">
+            @CSRF.formField
+            <input type="submit" class="btn btn-primary" VALUE="Logout">
         </form>
     </div>
 }

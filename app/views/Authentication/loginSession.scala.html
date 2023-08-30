@@ -1,4 +1,6 @@
-@()
+@import helper._
+@import play.mvc.Http.Request
+@(implicit request: Request)
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,20 +15,29 @@
         <div class="container-sm mt-5">
             <h2>Login</h2>
             <form action="@routes.SessionController.loginWithSession()" method="post">
+                @CSRF.formField
                 <div class="mb-3 mt-3">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
                 </div>
                 <div class="mb-3">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                 </div>
                 <div class="mb-3">
                     <label for="college">College:</label>
                     <select class="form-control" id="college" name="college">
-                        <option value="iit">IIT</option>
-                        <option value="iim">IIM</option>
-                        <option value="gnits">GNITS</option>
+                        <option value="IIT">IIT</option>
+                        <option value="IIM">IIM</option>
+                        <option value="GNITS">GNITS</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="role">Role:</label>
+                    <select class="form-control" id="role" name="role">
+                        <option value="ADMIN">Admin</option>
+                        <option value="STUDENT">Student</option>
+                        <option value="TEACHER">Teacher</option>
                     </select>
                 </div>
                 <div class="form-check mb-3">

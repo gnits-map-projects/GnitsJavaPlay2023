@@ -25,9 +25,9 @@ public class Book {
 
     static {
         books = new HashSet<>();
-        books.add(new Book(1, "C++", "user1", 400));
+        books.add(new Book(1, "C++", "user3", 400));
         books.add(new Book(2, "JAVA", "user2", 500));
-        books.add(new Book(3, "PYTHON", "user1", 200));
+        books.add(new Book(3, "PYTHON", "user3", 200));
         books.add(new Book(4, "GO", "user2", 100));
     }
 
